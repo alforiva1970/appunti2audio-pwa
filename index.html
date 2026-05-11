@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Appunti → Audio</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.png" type="image/png">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="Trasforma appunti in audio parlato">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>Appunti → Audio</h1>
+    <p>Carica un file e ascolta i tuoi appunti</p>
+  </header>
+
+  <main>
+    <div id="dropzone">
+      <div id="dropzone-content">
+        <span id="dropzone-icon">📄</span>
+        <p id="dropzone-text">Trascina qui un file<br><small>PDF, TXT, MD, JPG, PNG</small></p>
+        <button id="browse-btn" type="button">Scegli file</button>
+        <input type="file" id="file-input" accept=".pdf,.txt,.md,.jpg,.jpeg,.png,.tiff,.bmp,.webp" hidden>
+      </div>
+    </div>
+
+    <div id="preview" class="hidden">
+      <div id="file-info">
+        <span id="file-icon">📄</span>
+        <div>
+          <p id="file-name"></p>
+          <p id="file-size" class="muted"></p>
+        </div>
+        <button id="remove-btn" type="button" aria-label="Rimuovi file">&times;</button>
+      </div>
+    </div>
+
+    <div id="controls" class="hidden">
+      <div id="voice-row">
+        <label for="voice-select">Voce:</label>
+        <select id="voice-select">
+          <option value="">Italiano (default)</option>
+        </select>
+      </div>
+      <div id="status-bar">
+        <div id="status-text">Pronto</div>
+        <div id="progress-bar" class="hidden"><div id="progress-fill"></div></div>
+      </div>
+      <button id="generate-btn" type="button" disabled>🎤  Genera Audio</button>
+    </div>
+
+    <div id="player" class="hidden">
+      <div id="player-actions">
+        <button id="share-btn" type="button">📤  Condividi testo</button>
+        <button id="download-btn" type="button">💾  Salva testo</button>
+      </div>
+      <p class="muted" style="font-size:0.75rem;text-align:center;margin-top:4px;">
+        L'audio è già in riproduzione. Premi Condividi per usare altre app.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p class="muted">100% browser — niente server, niente cloud</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+<script src="app.js"></script>
+</body>
+</html>
